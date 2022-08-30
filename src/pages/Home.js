@@ -9,7 +9,7 @@ import Web3 from 'web3';
 const { ethereum } = window
 
 const web3 = new Web3(window.ethereum);
-const nft_contract_address = "0x5e73c34d591d2De9829AcC16914438813A830411";
+const nft_contract_address = "0x351bbee7C6E9268A1BF741B098448477E08A0a53";
 
 const Home = () => {
 
