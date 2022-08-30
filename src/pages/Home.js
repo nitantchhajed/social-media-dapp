@@ -102,7 +102,7 @@ const Home = () => {
     await newTweet.save();
     window.location.reload();
     if(mintNft=="minted"){
-      alert("mint nfts sucessfully");
+      alert("NFT Minted");
     }
   }
   async function createNFT() {
