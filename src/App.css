@@ -75,7 +75,6 @@ a:-webkit-any-link {
   justify-content: center;
   flex-direction: column;
   gap: 20px;
-  background-image: url("queppelin.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
