@@ -47,6 +47,7 @@ const Rightbar = () => {
   return (
     <>
       <div className="rightbarContent">
+        
         {/* <Input
           label="Search Twitter"
           name="Search Twitter"

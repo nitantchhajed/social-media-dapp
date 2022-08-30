@@ -16,9 +16,8 @@ const Profile = () => {
     <img className="profileBanner" src={user.attributes.banner ? user.attributes.banner : defaultImgs[1]}></img>
     <div className="pfpContainer">
       <img className="profilePFP" src={user.attributes.pfp ? user.attributes.pfp : defaultImgs[0]}></img>
-      <div className="profileName">{user.attributes.username.slice(0, 6)}</div>
-      <div className="profileWallet">{`${user.attributes.ethAddress.slice(0, 4)}...
-            ${user.attributes.ethAddress.slice(38)}`}</div>
+      <div className="profileName">{user.attributes.username}</div>
+      <div className="profileWallet">{user.attributes.ethAddress}</div>
       <Link to="/settings">
           <div className="profileEdit">Edit profile</div>
       </Link>

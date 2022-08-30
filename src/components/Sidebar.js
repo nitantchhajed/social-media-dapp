@@ -53,7 +53,7 @@ const Sidebar = () => {
           <img src={user.attributes.pfp ? user.attributes.pfp : defaultImgs[0]} className="profilePic"></img>
           <div className="profile">
             <div className="who">
-              {user.attributes.username.slice(0, 6)}
+              {user.attributes.username}
             </div>
             <div className="accWhen">
               {`${user.attributes.ethAddress.slice(0, 4)}...${user.attributes.ethAddress.slice(38)}`}

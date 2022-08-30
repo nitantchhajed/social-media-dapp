@@ -5,6 +5,11 @@ import { TextArea, Icon } from "web3uikit";
 import { useState, useRef } from "react";
 import TweetInFeed from "../components/TweetInFeed";
 import { useMoralis, useWeb3ExecuteFunction } from "react-moralis";
+import Web3 from 'web3';
+const { ethereum } = window
+
+const web3 = new Web3(window.ethereum);
+const nft_contract_address = "0x351bbee7C6E9268A1BF741B098448477E08A0a53";
 
 const Home = () => {
 
@@ -16,6 +21,8 @@ const Home = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [theFile, setTheFile] = useState();
   const [tweet, setTweet] = useState();
+
+  const address = Moralis.User.current().get("ethAddress");
 
   async function maticTweet() {
 
@@ -72,7 +79,7 @@ const Home = () => {
   }
 
 
-  async function saveTweet() {
+  async function saveTweet(mintNft="") {
 
     if(!tweet) return;
 
@@ -94,7 +101,51 @@ const Home = () => {
 
     await newTweet.save();
     window.location.reload();
-
+    if(mintNft=="minted"){
+      alert("mint nfts sucessfully");
+    }
+  }
+  async function createNFT() {
+    if(!tweet) return;
+    
+      const data = theFile;
+      const file = new Moralis.File(data.name, data);
+      await file.saveIPFS();
+      const imageURI = file.ipfs();
+    
+    const metadata = {
+      "image":imageURI
+    }
+    const metadataFile = new Moralis.File("metadata.json", {base64 : btoa(JSON.stringify(metadata))});
+    await metadataFile.saveIPFS();
+    const metadataURI = metadataFile.ipfs();
+    const txt = await mintToken(metadataURI);
+    saveTweet("minted");
+    // alert("You've successfully Minted this Image as NFT!");
+    
+  }
+  
+ 
+  async function mintToken(_uri){
+    const encodedFunction = web3.eth.abi.encodeFunctionCall({
+      name: "mintToken",
+      type: "function",
+      inputs: [{
+        type: 'string',
+        name: 'tokenURI'
+        }]
+    }, [_uri]); 
+  
+    const transactionParameters = {
+      to: nft_contract_address,
+      from: address,
+      data: encodedFunction
+    };
+    const txt = await ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [transactionParameters]
+    });
+    return txt
   }
 
   const onImageClick = () => {
@@ -117,6 +168,7 @@ const Home = () => {
             <TextArea
               label=""
               name="tweetTxtArea"
+              id = "tweet"
               placeholder="Share your thoughts here!"
               type="text"
               onChange={(e) => setTweet(e.target.value)}
@@ -141,6 +193,7 @@ const Home = () => {
                 <div className="tweet" onClick={maticTweet} style={{ backgroundColor: "#8247e5" }}> Post on Blockchain
                   <Icon fill="#ffffff" size={20} svg="matic" />
                 </div>
+                <div className="tweet" onClick={createNFT} >Post and Mint NFT</div>
               </div>
             </div>
           </div>
