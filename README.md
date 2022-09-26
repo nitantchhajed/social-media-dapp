@@ -26,5 +26,5 @@ npm start
 
 ![image](https://user-images.githubusercontent.com/96972634/187408946-9706c02a-5a37-47e1-b59b-06e111f295b8.png)
 
-# Your NFTs will be visible on OpenSea Testnet (Mumbai Testnet)
+# Your Minted NFTs from DApp will be visible on OpenSea Testnet (Mumbai Testnet)
 ![image](https://user-images.githubusercontent.com/96972634/192271090-edbcbdb9-d753-4e88-98d6-34e1d8ac0675.png)
