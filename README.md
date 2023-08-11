@@ -2,7 +2,7 @@
 
 Bringing the Social media on Web3 Platform.
 Now you can view your NFTs along with your posts in your Profile, Mint you posts as NFT.
-Post content on the Blockchain and do many more cool stuff......
+Post content on the Blockchain and do many more cool stuff.....
 
 # Matic Testnet
 Change your Metamask network to Matic Testnet,
